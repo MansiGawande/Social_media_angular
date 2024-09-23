@@ -1,0 +1,41 @@
+
+<div class="profile-card">
+    <!-- Profile Picture with Edit Icon -->
+    <div class="profile-image-container">
+        <img src="https://via.placeholder.com/100" alt="User profile image">
+        <button class="edit-icon" (click)="toggleEdit()">✏️</button>
+        <!-- <span class="edit-icon"> <i class="zmdi zmdi-edit" (click)="toggleEdit()"></i></span> -->
+    </div>
+
+    <!-- Profile Info -->
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.location }}</p>
+    <p class="email">{{ user.email }}</p>
+    <p class="bio">{{ user.bio }}</p>
+
+    <!-- Edit Form -->
+    <div class="edit-form" *ngIf="isEditing">
+        <input type="text" [(ngModel)]="user.name" placeholder="Name">
+        <input type="text" [(ngModel)]="user.location" placeholder="Location">
+        <input type="email" [(ngModel)]="user.email" placeholder="Email">
+        <textarea [(ngModel)]="user.bio" placeholder="Bio"></textarea>
+        <button class="update-button" (click)="saveChanges()">Update</button>
+    </div>
+
+    <div class="stats">
+        <div>
+            <h3>120</h3>
+            <p>Purchased</p>
+        </div>
+        <div>
+            <h3>271</h3>
+            <p>Wished</p>
+        </div>
+        <div>
+            <h3>12K</h3>
+            <p>Likes</p>
+        </div>
+    </div>
+
+  
+</div>

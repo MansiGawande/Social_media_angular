@@ -1,0 +1,34 @@
+<div class="sidebar" [ngClass]="{ 'closed': !sidebarOpen }">
+    <div class="profile-container" [ngClass]="{ 'closed-profile': !sidebarOpen }">
+        <div class="profile-picture" [ngClass]="{ 'small-profile': !sidebarOpen }">
+            <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+            </div>
+            </div>
+        <nav>
+        <ul>
+            <li class="nav-item" routerLink="profile">
+                <span class="icon"><i class="material-icons">dashboard</i></span>
+                <span class="text">Profile</span>
+            </li>
+            <li class="nav-item" routerLink="content">
+                <span class="icon"><i class="material-icons">video_library</i></span>
+                <span class="text">Content</span>
+            </li>
+            <li class="nav-item" routerLink="/analytics">
+                <span class="icon"><i class="material-icons">analytics</i></span>
+                <span class="text">Analytics</span>
+            </li>
+            <li class="nav-item" routerLink="/comments">
+                <span class="icon"><i class="material-icons">comment</i></span>
+                <span class="text">Comments</span>
+            </li>
+        </ul>
+    </nav>
+</div>
+<button (click)="toggleSidebar()">☰</button>
+<router-outlet></router-outlet>
+
+
+
+
+ 

@@ -1,0 +1,165 @@
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #f9f9f9; /* Light, clean background color */
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border: 2px solid seagreen;
+}
+
+.closed {
+  width: 74px;
+}
+
+/* Profile container styling */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px; /* Adjust margin to remove excessive gap */
+  transition: transform 0.3s ease;
+  margin-top: 70px;
+}
+
+/* Shrink profile when sidebar is closed */
+.closed-profile {
+  margin-bottom: 15px; /* Adjust spacing for closed sidebar */
+}
+
+/* Profile picture wrapper */
+.profile-picture {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #D89619; /* Customize border color */
+  transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+}
+.closed .profile-picture {
+  width: 60px;
+  height: 60px;
+  transition: width 0.3s, height 0.3s; 
+  border: 1px solid #D89619; /* Keeping consistency with border color */
+}
+
+/* Shrink profile image when sidebar is closed */
+.small-profile {
+  width: 50px;
+  height: 50px;
+  transition: width 0.3s, height 0.3s ease;
+}
+
+/* Profile image inside the circle */
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Navigation styles */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px; /* Increased padding for larger click area */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Modern semi-transparent hover effect */
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 15px;
+  color: #0b0c0c; /* Light text color */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Apply hover color for icon */
+.nav-item:hover .icon {
+  transform: scale(1.2); /* Enlarge icon slightly on hover */
+  color: #D89619; /* Custom hover color for the icon */
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0b0c0c; /* Light text color */
+  transition: color 0.3s ease;
+}
+
+/* Apply hover color for text */
+.nav-item:hover .text {
+  color: #D89619; /* Custom hover color for the text */
+}
+
+/* Hide text when sidebar is closed */
+.closed .text {
+  display: none;
+}
+
+.closed .icon {
+  margin-right: 0;
+}
+
+/* Sidebar hover to enlarge */
+/* .sidebar:hover {
+  width: 300px;
+} */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 80px;
+  }
+
+  .text {
+      display: none;
+  }
+
+  .sidebar:hover {
+      width: 250px;
+  }
+
+  .sidebar:hover .text {
+      display: inline-block;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-picture {
+      width: 100px;
+      height: 100px;
+  }
+}
+
+/* Sidebar Toggle Button Styling */
+button {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  background-color: #D89619; /* Matches sidebar accent color */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 1000; /* Ensures button stays above sidebar */
+  border-radius: 2px; /* Rounded corners for modern look */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+button:hover {
+  background-color: #bf7415; /* Darken on hover */
+}
