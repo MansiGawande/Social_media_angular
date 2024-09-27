@@ -27,17 +27,21 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContentComponent } from './content/content.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ViewproComponent } from './viewpro/viewpro.component';
+import { CreatepostComponent } from './createpost/createpost.component';
 
 export const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: '', component: SigninComponent },
     {path:'cpro',component:CreateProfileComponent},
-    {path:'viewpro', component:ViewproComponent},
+    {path:'cpost',component:CreatepostComponent},
+    // {path:'viewpro', component:ViewproComponent},
     {
-        path: 'dashboard', component: UdashboardComponent, children: [
+        path: 'udashboard', component: UdashboardComponent, children: [
             { path: 'profile', component: ProfileComponent },
             { path: 'content', component: ContentComponent },
             { path: '', redirectTo: 'content', pathMatch: 'full' }
         ]
     }
 ]
+
+

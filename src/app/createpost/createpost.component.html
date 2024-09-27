@@ -1,0 +1,162 @@
+
+    <!-- Cropper Modal Template -->
+<!-- <template id="modaltpl"> -->
+<ng-template #modalTpl>
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="img-container">
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- </template> -->
+<!-- End Cropper Modal Template -->
+
+<!-- Cropper modal  -->
+<div class="modal fade" id="cropmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="LGModalLabel" aria-hidden="true"></div>
+<!-- End cropper modal  -->
+<div class="row border mt-5">
+    <div class="col-sm-6 col-md-6 mb-3">
+        <div class="card single-explore-item">
+            <div class="card-body pt-2">
+
+                <!-- Favorite button and option dropdown -->
+                <div class="d-flex justify-content-end gap-1 mb-3">
+                    <button type="button" class="btn btn-sm btn-icon shadow-none text-orange add-tooltip"
+                        data-bs-original-title="Remove from Favorites">
+                        <i class="fa-regular fa-star fs-5"></i>
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-icon btn-sm btn-hover btn-primary" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis fs-4"></i>
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- END : Favorite button and option dropdown -->
+
+                <!-- Profile picture and short information -->
+                <div class="text-center position-relative">
+                    <div class="d-flex justify-content-center pb-3 ">
+                        <!-- File previews -->
+                        <div id="profile_dzPreviews" class=""
+                            style="position:absolute; width: 128px; height: 128px;  z-index:9;">
+                            <div id="profile_dzTemplate">
+                                <div class="d-flex align-items-center" style="position:absolute; width: 100%">
+                                    <!-- Image preview -->
+                                    <div class="flex-grow-1">
+                                        <img class="dz-img hv-oc hv-gc img-xl rounded-circle" data-dz-thumbnail>
+                                    </div>
+                                    <div class="d-flex justify-content-between  flex-grow-1 ms-3"
+                                        style="position:absolute; width: 100%; height: 100%; bottom:0px; right: 0px; z-index:9;">
+
+                                        <!-- Progress and remove button -->
+                                        <!-- <div
+                                            class="flex-shrink-0 d-flex align-items-center flex-row gap-3 single-explore-img-info">
+                                            <button data-dz-remove
+                                                class="btn btn-icon btn-xs btn-danger rounded-circle dz-cancel">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </div> -->
+                                        <!-- END : Progress and remove button -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END : File previews -->
+
+                        <!-- <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjMxNjA3NzF8&ixlib=rb-4.0.3&q=85" alt="Profile Picture" loading="lazy" width=128> -->
+                        <!-- <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle" 
+                                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjMxNjA3NzF8&ixlib=rb-4.0.3&q=85" 
+                                  alt="Profile Picture" loading="eager" width="128"> -->
+
+                        <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle"
+                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjMxNjA3NzF8&ixlib=rb-4.0.3&q=85"
+                            alt="Profile Picture" loading="eager" width="128" height="128">
+                            
+
+                    </div>
+                    <!-- <a href="#" class="h5 " id="user-fullname-panel">Full Name</a> -->
+                    <!-- <p class="text-body-secondary" id="user-nickname-panel">Nickname</p> -->
+                </div>
+                <p class="text-center">Batch <span id="user-year-panel"> YYYY</span></p>
+                <!-- END : Profile picture and short information -->
+
+                <!-- Social media buttons -->
+                <div class="mt-4 pt-3 text-center border-top text-body-secondary">
+                    <a href="#" class="btn btn-icon btn-hover btn-primary text-inherit">
+                        <i class="fa-brands fa-facebook fs-4"></i>
+                    </a>
+                    <a href="#" class="btn btn-icon btn-hover btn-info text-inherit">
+                        <i class="fa-brands fa-twitter fs-4"></i>
+                    </a>
+                    <a href="#" class="btn btn-icon btn-hover btn-danger text-inherit">
+                        <i class="fa-brands fa-google-plus fs-4"></i>
+                    </a>
+                    <a href="#" class="btn btn-icon btn-hover btn-warning text-inherit">
+                        <i class="fa-brands fa-instagram fs-4"></i>
+                    </a>
+                </div>
+                <!-- END : Social media buttons -->
+            </div>
+        </div>
+
+    </div>
+    <form id="form-1" action="#" class="row col-md-6  border border-dark">
+        <div class="form-floating mb-3 col-md-10">
+            <input type="text" class="form-control" id="user-fullname" name="user-fullname" placeholder="Full Name">
+            <label for="floatingInput">Full name</label>
+        </div>
+
+        <!-- <div class="form-floating mb-3 col-md-6">
+            <input type="text" class="form-control" id="user-nickname" name="user-nickname" placeholder="NickName">
+            <label for="floatingInput">Nickname</label>
+        </div> -->
+
+        <!-- <div class="row"> -->
+        <!-- <div class="form-floating mb-3 col-md-6">
+            <select class="form-select" id="user-yr-start" name="user-yr-start" aria-label="Year entered SDAR">
+                <option selected>Select year</option>
+            </select>
+            <label for="floatingSelect">Year entered</label>
+        </div> -->
+
+        <div class="form-floating mb-3 col-md-10">
+            <select class="form-select" id="user-yr-end" name="user-yr-end" aria-label="Year SPM">
+                <option>Select year</option>
+                <option>Please select Year entered first</option>
+            </select>
+            <label for="floatingSelect">Year ended</label>
+        </div>
+        <!-- </div> -->
+
+        <!-- Default Style -->
+        <div id="profileImg" class="dropzone bg-light text-center rounded mb-3">
+            <div class="dz-message m-0">
+                <div class="p-3 text-body-secondary text-opacity-25">
+                    <i class="demo-psi-upload-to-cloud display-5"></i>
+                </div>
+                <h4>Drop your latest profile photo here</h4>
+                <p class="text-body-secondary mb-0">or click to pick manually</p>
+            </div>
+            <div class="fallback">
+                <input name="file" type="file" multiple>
+            </div>
+        </div>
+        <!-- END : Default Style -->
+    </form>
+</div>
+<div class="d-flex col-11">
+    <button id="next-1" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-next btn-primary ms-auto"
+        data-mdb-ripple-color="dark">Save</button>
+</div>
+<!-- </div> -->

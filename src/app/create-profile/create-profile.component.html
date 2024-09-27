@@ -4,21 +4,28 @@
       <form (ngSubmit)="submitForm()" #profileForm="ngForm">
         <div class="column-left">
           <label for="name">Name:</label>
-          <input type="text" name="name" id="name" ngModel required>
-  
+          <!-- <input type="text" name="name" id="name" ngModel required> -->
+          <input type="text" name="name" id="name" ngModel [(ngModel)]="name" required>
+
           <label for="email">Email:</label>
-          <input type="email" name="email" id="email" ngModel required>
+          <!-- <input type="email" name="email" id="email" ngModel required> -->
+          <input type="email" name="email" id="email" ngModel [(ngModel)]="email" required>
+
   
           <label for="bio">Bio:</label>
-          <textarea name="bio" id="bio" ngModel required></textarea>
+          <!-- <textarea name="bio" id="bio" ngModel required></textarea> -->
+          <textarea name="bio" id="bio" ngModel [(ngModel)]="bio" required></textarea>
+
   
           <button type="submit">Submit</button>
         </div>
   
         <div class="column-right">
-          <label for="photo">Profile Picture:</label>
-          <input type="file" name="photo" id="photo" (change)="displayProfilePic($event)">
-          <img src="#" alt="Profile Picture" [style.display]="photoSrc ? 'block' : 'none'" [src]="photoSrc" id="profilePic">
+          <label for="profileImg_URL">Profile Picture:</label>
+          <!-- <input type="file" name="profileImg_URL" id="photo" (change)="displayProfilePic($event)"> -->
+          <input type="file" name="profileImg_URL" id="photo" (change)="displayProfilePic($event)">
+
+          <img src="#" alt="Profile Picture" [style.display]="profileImg_URL ? 'block' : 'none'" [src]="profileImg_URL" id="profilePic">
         </div>
       </form>
     </div>
