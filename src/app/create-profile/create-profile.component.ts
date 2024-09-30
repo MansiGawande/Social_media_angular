@@ -123,7 +123,7 @@ export class CreateProfileComponent {
       console.log("User ID not found. Please sign in")
       Swal.fire({
         title: "Error!",
-        text: "User ID not found. Please sign in.",
+        text: "Please sign in for Create the profile",
         icon: "error",
       });
       return;

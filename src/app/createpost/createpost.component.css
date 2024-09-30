@@ -1,7 +1,59 @@
-/* .forcenter{
-    margin-top: 50% !important;
-    border: 5px solid pink;
-} */
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#form-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+#user-fullname {
+    min-height: 80px; 
+    height: auto; 
+}
+/* extrA */
+/* img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  } */
+
+  .dropzone {
+    position: relative;
+    border: 2px dashed #ced4da;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 300px;
+}
+
+
+  .uploaded-image {
+    max-width: 100%; /* Image should not exceed container width */
+    max-height: 200px; /* Set a maximum height */
+    object-fit: cover; /* Cover the space while maintaining the aspect ratio */
+    border-radius: 4px;
+    margin-top: 20px;
+}
+.dz-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.column-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
 .circle-crop  {
   border-radius: 50% !important;
 }

@@ -25,17 +25,17 @@ createProfile(profileData: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/profile/createPro`, profileData);
 }
 
-// // View Profile Method
+// in post servie
 // viewProfile(user_id: string): Observable<any> {
-//   return this.http.get(`${this.apiUrl}/profile/viewPro/${user_id}`);
+//   return this.http.get(`${this.apiUrl}/profile/viewPro?user_id=${user_id}`);
 // }
-viewProfile(user_id: string): Observable<any> {
-  return this.http.get(`${this.apiUrl}/profile/viewPro?user_id=${user_id}`);
-}
 
 // Update Profile Method
 updateProfile(userId: string, profileData: any): Observable<any> {
   return this.http.put(`${this.apiUrl}/user/updateProfile/${userId}`, profileData);
-
+}
+//Profile posts
+profile_Post(user_id: string): Observable<any> {
+  return this.http.get(`${this.apiUrl}/post/profileposts?user_id=${user_id}`);
 }
 }

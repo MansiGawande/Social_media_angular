@@ -1,6 +1,4 @@
-
-    <!-- Cropper Modal Template -->
-<!-- <template id="modaltpl"> -->
+<!-- Cropper Modal Template -->
 <ng-template #modalTpl>
 
     <div class="modal-dialog modal-lg" role="document">
@@ -14,16 +12,18 @@
         </div>
     </div>
 </ng-template>
-
-<!-- </template> -->
 <!-- End Cropper Modal Template -->
 
 <!-- Cropper modal  -->
 <div class="modal fade" id="cropmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="LGModalLabel" aria-hidden="true"></div>
+
+    <!-- <div class="modal fade" id="cropmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="LGModalLabel" aria-hidden="true"></div> -->
+
 <!-- End cropper modal  -->
-<div class="row border mt-5">
-    <div class="col-sm-6 col-md-6 mb-3">
+<div class="row border mt-3 form-container">
+    <div class="col-sm-6 col-md-6 mb-3 ">
         <div class="card single-explore-item">
             <div class="card-body pt-2">
 
@@ -59,13 +59,6 @@
                                         style="position:absolute; width: 100%; height: 100%; bottom:0px; right: 0px; z-index:9;">
 
                                         <!-- Progress and remove button -->
-                                        <!-- <div
-                                            class="flex-shrink-0 d-flex align-items-center flex-row gap-3 single-explore-img-info">
-                                            <button data-dz-remove
-                                                class="btn btn-icon btn-xs btn-danger rounded-circle dz-cancel">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </div> -->
                                         <!-- END : Progress and remove button -->
 
                                     </div>
@@ -74,25 +67,22 @@
                         </div>
                         <!-- END : File previews -->
 
-                        <!-- <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjMxNjA3NzF8&ixlib=rb-4.0.3&q=85" alt="Profile Picture" loading="lazy" width=128> -->
-                        <!-- <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle" 
-                                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjMxNjA3NzF8&ixlib=rb-4.0.3&q=85" 
-                                  alt="Profile Picture" loading="eager" width="128"> -->
-
-                        <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle"
+                        <!-- <img id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle"
                             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjMxNjA3NzF8&ixlib=rb-4.0.3&q=85"
-                            alt="Profile Picture" loading="eager" width="128" height="128">
-                            
+                            alt="Profile Picture" loading="eager" width="128" height="128"> -->
 
-                    </div>
-                    <!-- <a href="#" class="h5 " id="user-fullname-panel">Full Name</a> -->
-                    <!-- <p class="text-body-secondary" id="user-nickname-panel">Nickname</p> -->
+                            <img  id="profileImgTemp" class="hv-oc hv-gc img-xl rounded-circle"
+                            [src]="getProfileImageUrl(profileData?.profileImg_URL  + '?w=152&h=152&fit=crop&crop=faces')"
+                            alt="" loading="eager" width="128" height="128">
+                 </div>
+                    <a href="#" class="h5 " id="user-fullname-panel">{{profileData?.name}}</a>
+                    <p class="text-body-secondary" id="user-nickname-panel">Nickname</p>
                 </div>
-                <p class="text-center">Batch <span id="user-year-panel"> YYYY</span></p>
+                <p class="text-center"> <span id="user-year-panel"> {{profileData?.email}}</span></p>
                 <!-- END : Profile picture and short information -->
 
                 <!-- Social media buttons -->
-                <div class="mt-4 pt-3 text-center border-top text-body-secondary">
+                <div class="mt-4 pt-3 text-center border-top text-body-secondary ">
                     <a href="#" class="btn btn-icon btn-hover btn-primary text-inherit">
                         <i class="fa-brands fa-facebook fs-4"></i>
                     </a>
@@ -111,52 +101,57 @@
         </div>
 
     </div>
-    <form id="form-1" action="#" class="row col-md-6  border border-dark">
-        <div class="form-floating mb-3 col-md-10">
-            <input type="text" class="form-control" id="user-fullname" name="user-fullname" placeholder="Full Name">
-            <label for="floatingInput">Full name</label>
+    <form (ngSubmit)="submitForm()" #profileForm="ngForm" id="form-1" action="#" class="row col-md-6">
+        <div class="form-floating mb-4 col-md-8">
+            <select class="form-select" id="user-yr-end" name="user-yr-end" aria-label="Year SPM" ngModel [(ngModel)]="mediaType" required>
+                <option value="" disabled selected>Select Media Type</option>
+                <option value="video">Please Upload Video</option>
+                <option value="image">Please Upload Image</option>
+            </select>
+            <label for="floatingSelect">Media Type</label>
         </div>
 
-        <!-- <div class="form-floating mb-3 col-md-6">
-            <input type="text" class="form-control" id="user-nickname" name="user-nickname" placeholder="NickName">
-            <label for="floatingInput">Nickname</label>
-        </div> -->
-
-        <!-- <div class="row"> -->
-        <!-- <div class="form-floating mb-3 col-md-6">
-            <select class="form-select" id="user-yr-start" name="user-yr-start" aria-label="Year entered SDAR">
-                <option selected>Select year</option>
-            </select>
-            <label for="floatingSelect">Year entered</label>
-        </div> -->
-
-        <div class="form-floating mb-3 col-md-10">
-            <select class="form-select" id="user-yr-end" name="user-yr-end" aria-label="Year SPM">
-                <option>Select year</option>
-                <option>Please select Year entered first</option>
-            </select>
-            <label for="floatingSelect">Year ended</label>
+        <div class="form-floating mb-4 col-md-8">
+            <!-- <textarea class="form-control" id="user-fullname" name="post-description"
+                placeholder="Description" ngModel [(ngModel)]="description" required ></textarea> -->
+                <textarea class="form-control" id="user-fullname" name="description" placeholder="Description"
+                ngModel [(ngModel)]="description" required></textarea>
+            
+            <label for="floatingInput">Description</label>
         </div>
-        <!-- </div> -->
+
 
         <!-- Default Style -->
-        <div id="profileImg" class="dropzone bg-light text-center rounded mb-3">
+        <div id="profileImg" class="dropzone bg-light text-center rounded mb-5">
+
             <div class="dz-message m-0">
                 <div class="p-3 text-body-secondary text-opacity-25">
                     <i class="demo-psi-upload-to-cloud display-5"></i>
                 </div>
-                <h4>Drop your latest profile photo here</h4>
+                <h4>Drop your latest profile Media here</h4>
                 <p class="text-body-secondary mb-0">or click to pick manually</p>
             </div>
             <div class="fallback">
-                <input name="file" type="file" multiple>
+                <!-- extra -->
+                <div class="column-right">
+                    <!-- <label for="media_url">Upload Media</label> -->
+                    <input name="media_url" type="file" multiple (change)="displayProfilePic($event)">
+
+                <!-- <input name="file" type="file" multiple name = "media_url" (change)="displayProfilePic($event)"> -->
+                <!-- extra -->
+                <img src="#" alt="Profile Picture" [style.display]="media_url ? 'block' : 'none'" [src]="media_url" id="profilePic" class="uploaded-image">
+
+                <!-- <img *ngIf="media_url" alt="Profile Picture" [src]="media_url" id="profilePic" class="uploaded-image"> -->
+
+                <!--below close extra  -->
+                </div>
             </div>
+                
         </div>
         <!-- END : Default Style -->
+        <div class="d-flex col-11">
+            <button id="next-1" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-next btn-primary ms-auto"
+            data-mdb-ripple-color="dark">Upload</button>
+        </div>
     </form>
 </div>
-<div class="d-flex col-11">
-    <button id="next-1" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-next btn-primary ms-auto"
-        data-mdb-ripple-color="dark">Save</button>
-</div>
-<!-- </div> -->
