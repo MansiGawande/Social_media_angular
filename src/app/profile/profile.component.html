@@ -46,8 +46,9 @@
                         </ul>
                     </div>
                 </div> -->
-
-                    <div class="gallery-item" *ngFor="let imageUrl of postImageUrls" tabindex="0">
+<!-- *ngFor directive used for iterating over an array and generating a template for each item in that collection -->
+<!-- t dynamically creates a new instance of the template for each item  -->
+                <div class="gallery-item" *ngFor="let imageUrl of postImageUrls" tabindex="0">
                         <img [src]="imageUrl" class="gallery-image" alt="">
 
                     <div class="gallery-item-info">

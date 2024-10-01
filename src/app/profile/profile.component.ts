@@ -16,12 +16,14 @@ import { PostserviceService } from '../postservice.service';
 export class ProfileComponent implements OnInit {
   profileData: any;
   postData: any[] = [];
-  postImageUrls: string[] = []; // Add this line to store the image URLs
+  postImageUrls: string[] = []; //  to store the image urls
 
 constructor(private userService :UserService) {}
 // const errors:{[key :string]:string} = {};
 // let isValid = true;
 
+// ngOnInit lifecycle hook is used for initialization tasks in com is called once after the component’s
+//  data-bound properties have been initialized such as fetching data, setting default values, or configuring services. 
 ngOnInit(): void {
   this.loadUserProfile();
 }
@@ -57,7 +59,7 @@ const user_id = sessionStorage.getItem("loginId")
         console.error("Error fetching profile: ", error);
         Swal.fire({
           title: "Error!",
-          text: "Please login to view the profile.",
+          text: "Profile not exist Please create profile .",
           icon: "error",
         });
       }
