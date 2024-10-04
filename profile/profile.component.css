@@ -11,8 +11,8 @@
 
 .app-body {
     font-family: "Open Sans", Arial, sans-serif;
-    background-color: #fafafa;
-    /* background-color: #8b94a3; */
+    /* background-color: #fafafa; */
+    background-color: #8b94a3;
     color: #262626;
     min-height: 100vh;
     padding-bottom: 3rem;
@@ -37,14 +37,14 @@ img {
 .container {
     max-width: 93.5rem;
     margin: 0 auto;
-    /* border: 2px solid black;
-    background-color: #dbdbdb; */
+    border: 2px solid black;
+    background-color: #dbdbdb;
 }
 .container-img {
     max-width: 93.5rem;
     margin: 0 auto;
     padding: 0 2rem;
-    /* border: 3px solid purple; */
+    border: 3px solid purple;
 }
 
 .btn {

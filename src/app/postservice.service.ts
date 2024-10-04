@@ -18,5 +18,8 @@ uploadpost(postData :any):Observable<any>{
 viewProfile(user_id: string): Observable<any> {
   return this.http.get(`${this.apiUrl}/profile/viewPro?user_id=${user_id}`);
 }
+content(user_id: string): Observable<any> {
+  return this.http.get(`${this.apiUrl}/post/postContent?user_id=${user_id}`);
+}
 
 }
