@@ -1,28 +1,15 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-content',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './content.component.html',
-//   styleUrl: './content.component.css'
-// })
-// export class ContentComponent {
-
-// }
-
 import { Component } from '@angular/core';
 import { PostserviceService } from '../postservice.service';
 import Swal from 'sweetalert2';
-import { response } from 'express';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './content.component.html',
-  styleUrl: './content.component.css'
+  styleUrls: ['./content.component.css']
 })
 export class ContentComponent {
   postwithProfile: any[] = [];
@@ -31,7 +18,7 @@ export class ContentComponent {
   profilename: string[] = [];
   createdAt :string[] = []
 
-  constructor(private postService: PostserviceService) { }
+  constructor(private postService: PostserviceService,private router:Router) { }
 
   // ngOnInit lifecycle hook is used for initialization tasks in com is called once after the component’s load
   //  data-bound properties have been initialized such as fetching data, configuring services. 
@@ -55,6 +42,8 @@ export class ContentComponent {
       next: (response) => {
         console.log("Post data: ", response.data);
         this.postwithProfile = response.data;
+
+    // alert(`Content to profile: ${this.postwithProfile[0].profile.profile_id}`);
 
         console.log("this.postwithProfile :", this.postwithProfile[0]);
         console.log("this.Profile image.......... :", this.postwithProfile[0].profile.profileImg_URL);
@@ -99,9 +88,11 @@ export class ContentComponent {
         console.error("Error fetching profile: ", error);
         Swal.fire({
           title: "Error!",
-          text: "Profile not exist Please create profile .",
+          text: "Profile not exist Please create profile.",
           icon: "error",
         });
+        // this.router.navigate(['create-profile']); 
+
       }
     })
   }
@@ -122,6 +113,10 @@ export class ContentComponent {
     const date = new Date(dateString);
     return date.toLocaleString(); 
   }
+  goToProfile(profile_id: number): void {
+    // console.log("profile_id: ", profile_id);
+    this.router.navigate(['/profile', profile_id]);
 
+  }
 }
 

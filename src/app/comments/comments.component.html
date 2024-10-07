@@ -2,34 +2,43 @@
   <div class="container">
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
-        <h5>2 Comments</h5>
+        <!-- <h5>2 Comments</h5> -->
+        <h5>{{ comments?.length || 0 }} Comments</h5>
       </div>
     </div>
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
         <div class="comments">
-          <div class="comment d-flex mb-4">
+          <!-- <div class="comment d-flex mb-4"> -->
+          <div *ngFor="let comment of comments" class="comment d-flex mb-4">
+
             <div class="flex-shrink-0">
               <div class="avatar avatar-sm rounded-circle">
-                <img class="avatar-img" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                <!-- <img class="avatar-img" src="https://randomuser.me/api/portraits/men/32.jpg" alt=""> -->
+                <img *ngIf="comment.profile?.profileImg_URL" class="avatar-img"
+                  [src]="getProfileImageUrl(comment.profile.profileImg_URL)" alt="{{ comment.profile.name }}">
+
               </div>
             </div>
             <div class="flex-grow-1 ms-2 ms-sm-3">
               <div class="comment-meta d-flex align-items-baseline">
-                <h6 class="me-2">Jordan Singer</h6>
-                <span class="text-muted">2d</span>
+                <h6 class="me-2">{{ comment.profile.name }}</h6>
+
+                <!-- <span class="text-muted">2d</span> -->
+                <span class="text-muted">{{ comment.createdAt | date:'short' }}</span>
               </div>
-              <div class="comment-body">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non minima ipsum at amet doloremque qui magni, placeat deserunt pariatur itaque laudantium impedit aliquam eligendi repellendus excepturi quibusdam nobis esse accusantium.
+            <div class="comment-body">
+                {{ comment.comment }}
               </div>
 
-              <div class="comment-replies bg-light p-3 mt-3 rounded">
+              <!-- <div class="comment-replies bg-light p-3 mt-3 rounded">
                 <h6 class="comment-replies-title mb-4 text-muted text-uppercase">2 replies</h6>
-
                 <div class="reply d-flex mb-4">
                   <div class="flex-shrink-0">
                     <div class="avatar avatar-sm rounded-circle">
-                      <img class="avatar-img" src="https://images.unsplash.com/photo-1501325087108-ae3ee3fad52f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=f7f448c2a70154ef85786cf3e4581e4b" alt="">
+                      <img class="avatar-img"
+                        src="https://images.unsplash.com/photo-1501325087108-ae3ee3fad52f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=f7f448c2a70154ef85786cf3e4581e4b"
+                        alt="">
                     </div>
                   </div>
                   <div class="flex-grow-1 ms-2 ms-sm-3">
@@ -54,14 +63,15 @@
                       <span class="text-muted">1d</span>
                     </div>
                     <div class="reply-body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolore sed eos sapiente, praesentium.
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolore sed eos sapiente,
+                      praesentium.
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="comment d-flex">
+          <!-- <div class="comment d-flex">
             <div class="flex-shrink-0">
               <div class="avatar avatar-sm rounded-circle">
                 <img class="avatar-img" src="https://randomuser.me/api/portraits/women/63.jpg" alt="">
@@ -73,24 +83,44 @@
                 <span class="text-muted">4d</span>
               </div>
               <div class="comment-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto laborum in corrupti dolorum, quas delectus nobis porro accusantium molestias sequi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto laborum in corrupti dolorum, quas
+                delectus nobis porro accusantium molestias sequi.
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="comment-form d-flex align-items-center">
+
           <div class="flex-shrink-0">
             <div class="avatar avatar-sm rounded-circle">
-              <img class="avatar-img" src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&crop=faces&fit=crop&h=200&w=200" alt="">
+              <!-- <img class="avatar-img"
+                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&crop=faces&fit=crop&h=200&w=200"
+                alt=""> -->
+              <img *ngIf="currentUser?.profileImg_URL" class="avatar-img"
+                [src]="getProfileImageUrl(currentUser.profileImg_URL)" alt="{{ currentUser.name }}">
             </div>
           </div>
           <div class="flex-grow-1 ms-2 ms-sm-3">
-            <form>
-              <textarea class="form-control py-0 px-1 border-0" rows="1" placeholder="Start writing..." style="resize: none;"></textarea>
+            <!-- <form>
+                <textarea class="form-control py-0 px-1 border-0" rows="1" placeholder="Start writing..." style="resize: none;" ></textarea>
+              </form> -->
+              <!-- The ngSubmit event is designed to trigger your submission logic when a form is submitted, -->
+              <!-- if we use only submitComment () , it would not be part of the form submission process.  -->
+                <form (ngSubmit)="submitComment()" class="d-flex align-items-center border rounded p-1">
+              <!-- the user types something in the textarea, the comment variable in component is updated with the typed text. -->
+              
+              <!-- ngModel directive is used for two-way data binding   If you want to bind user input 
+               to a variable, ngModel is the recommended way -->
+              <textarea [(ngModel)]="comment" name="comment" class="form-control py-0 px-1 border-0 flex-grow-1"
+                rows="1" placeholder="Start writing..." style="resize: none;"></textarea>
+
+              <button type="submit" class="btn border-0" style="background: none;">
+                <i class="fas fa-paper-plane" style="font-size: 20px; color: #007bff;"></i>
+              </button>
             </form>
           </div>
         </div>

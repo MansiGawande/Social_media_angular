@@ -37,6 +37,9 @@ img {
   margin: 0 auto;
   padding: 0 2rem;
 }
+.liked {
+  color: red; 
+}
 
 .btn {
   display: inline-block;

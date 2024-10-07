@@ -94,10 +94,10 @@ export class CreateProfileComponent {
     const errors:{[key :string]:string} = {};
     let isValid = true;
 
-    if (!this.nameRegex.test(this.name)) {
-      errors['name'] = "Please enter both Name and Surname";
-      isValid = false;
-    }
+    // if (!this.nameRegex.test(this.name)) {
+    //   errors['name'] = "Please enter both Name and Surname";
+    //   isValid = false;
+    // }
     if (!this.emailRegex.test(this.email)) {
       errors['email'] = "Invalid Email format"; 
       isValid = false;
@@ -128,7 +128,7 @@ export class CreateProfileComponent {
       });
       return;
     }
-      alert(`User ID: ${user_id}`);
+      // alert(`User ID: ${user_id}`);
 
         const profileData = new FormData();
 
@@ -151,9 +151,14 @@ export class CreateProfileComponent {
           icon: 'success',
           confirmButtonText: 'OK',
         })
-        .then(() => {
+       this. name = '';
+        this.email = '';
+        this.bio = '';
+        this.photo = null;
+      
+        // .then(() => {
       // this.router.navigate(['/some-success-route']);
-    });
+    // });
  
       },
       error: (error) => {

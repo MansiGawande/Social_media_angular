@@ -115,11 +115,7 @@
   .avatar-group-dark > .avatar {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
   }
-  
-  /* Font not working in <textarea> for this version of bs */
-  
+    
   textarea {
     font-family: inherit;
   }
-  
-  

@@ -41,22 +41,17 @@
                     <!-- <div class="gallery-item" *ngFor="let imageUrl of postImageUrls" tabindex="0"> -->
                     <!-- <img [src]="imageUrl" class="gallery-image" alt=""> -->
 
-                    <!-- <div class="gallery-item" *ngFor="let post of postData" tabindex="0"
-                        (click)="goToComments(post.post_id)"> -->
-
-                        <div class="gallery-item" *ngFor="let post of postData" tabindex="0">
-                 <img [src]="getPostImageUrl(post.media_url)" class="gallery-image" alt="">
+                    <div class="gallery-item" *ngFor="let post of postData" tabindex="0"
+                        (click)="goToComments(post.post_id)">
+                        <img [src]="getPostImageUrl(post.media_url)" class="gallery-image" alt="">
 
                         <div class="gallery-item-info">
                             <ul>
-                                <!-- <li class="gallery-item-likes"(click)="LikePost(post.post_id)"> -->
-                                <li class="gallery-item-likes"(click)="LikePost(post)">
+                                <li class="gallery-item-likes">
                                     <span class="visually-hidden">Likes:</span>
-                                    <!-- <i class="fas fa-heart" aria-hidden="true"></i>56 -->
-                                 <i class="fas fa-heart" [ngClass]="{'liked': post.isLiked}" aria-hidden="true"></i>
-                                     {{ post.likeCount}} 
-                                    </li>
-                                <li class="gallery-item-comments" (click)="goToComments(post.post_id)"><span class="visually-hidden">Comments:</span>
+                                    <i class="fas fa-heart" aria-hidden="true"></i>56
+                                </li>
+                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span>
                                     <i class="fas fa-comment" aria-hidden="true"></i>
                                 </li>
                             </ul>

@@ -34,8 +34,26 @@ createProfile(profileData: any): Observable<any> {
 updateProfile(userId: string, profileData: any): Observable<any> {
   return this.http.put(`${this.apiUrl}/user/updateProfile/${userId}`, profileData);
 }
-//Profile posts
-profile_Post(user_id: string): Observable<any> {
-  return this.http.get(`${this.apiUrl}/post/profileposts?user_id=${user_id}`);
+//Profile posts for others
+profile_Post(user_id: string,profile_id:number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/post/profileposts?user_id=${user_id}&profile_id=${profile_id}`);
+//http://localhost:3001/post/profileposts?user_id=4&profile_id=3
 }
+// profile & post only for self view
+self_Profile(user_id: string): Observable<any> {
+  return this.http.get(`${this.apiUrl}/profile/selfProfile?user_id=${user_id}`);
+  // http://localhost:3001/profile/selfProfile?user_id=1
+}
+addLike(user_id:string,post_id:number):Observable<any> {
+  return this.http.post(`${this.apiUrl}/likes/addlikes`, { user_id, post_id });
+}
+// removeLike(user_id:string,post_id:number):Observable<any>{
+//   return this.http.delete(`${this.apiUrl}/likes/removeLike`, {user_id, post_id });
+
+// }
+removeLike(user_id: string, post_id: number): Observable<any> {
+    const body = { user_id, post_id }; 
+    return this.http.delete(`${this.apiUrl}/likes/removeLike`, { body });
+}
+
 }

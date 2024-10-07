@@ -10,7 +10,9 @@
                             </div>
                             <div class="div2">
                                  <img [src]="getProfileImage(profileImageUrls[i])" class="pro-img" alt="" />
-                                    <p class = "profile_name">{{ profilename[i] }}<p>
+                                    <!-- <p class = "profile_name">{{ profilename[i] }}<p> -->
+                                        <p class="profile_name" (click)="goToProfile(postwithProfile[i].profile.profile_id)">{{ profilename[i] }}</p>
+
                                 <span class = "postDate">{{createdAt[i]}}</span>
                                 <p class="lastP"></p>
                             </div>
