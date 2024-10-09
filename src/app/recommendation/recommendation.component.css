@@ -1,0 +1,261 @@
+@import "https://unpkg.com/open-props@1.7.0/open-props.min.css"
+layer(design.system);
+/* Source code of these utilities: https://github.com/mobalti/layout-craft/blob/main/lib/utilities.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200..700&display=swap");
+@import "https://www.unpkg.com/layout-craft@1.0.1/dist/utilities.css"
+layer(base.utilities);
+
+@layer base.app {
+
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
+  :where(:not(dialog)) {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* :root {
+    font-family: "Inter", sans-serif;
+    color-scheme: dark;
+    --surface-1: oklch(0.17 0 0);
+    --surface-2: oklch(0.24 0 0);
+    --text-1: oklch(0.97 0 0);
+    --text-2: oklch(0.57 0 0);
+  } */
+
+  .outer-wrapper {
+    height: 100vh;
+    width: 100vw;
+    /* background-color: oklch(0.17 0 0); */
+    /* background-color:rgb(129, 136, 136); */
+    /* background-color: #f0f0f0; */
+    background-color: #FAFAFA;
+    /* color: oklch(0.97 0 0); */
+    color:#D89619;
+    -webkit-font-smoothing: antialiased;
+    min-block-size: 100dvb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .suggest_wrapper {
+    width: 100%;
+  }
+}
+
+@layer components.Recommendation {
+  .SectionRecommendation {
+    --_content: 570px;
+
+    font-size: 0.9375rem;
+
+    border-block: var(--border-size-1) solid oklch(0.97 0 0 / 0.15);
+    padding-block: var(--size-3);
+    position: relative;
+    margin-inline: auto;
+    isolation: isolate;
+
+    :where(a, button, p, span, h2) {
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :where(button) {
+      border: unset;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    h2 {
+      font-weight: var(--font-weight-5);
+
+      @media (width < 700px) {
+        padding-inline-start: 0.75rem;
+      }
+    }
+
+    .UserList {
+      list-style: none;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      /* Hide scrollbar */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+
+      /* Firefox */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      @media (width < 700px) {
+        padding-inline: 0.75rem;
+        scroll-padding-inline: 0.75rem;
+      }
+    }
+
+    .Card {
+      scroll-snap-align: start;
+      /* background-color: oklch(0.24 0 0); */
+      background-color: rgba(240, 240, 240, 0.5); 
+      /* background-color: rgba(255, 255, 255, 0.3); */
+      /* background-color: rgba(255, 250, 240, 0.4); */
+      /* background-color: rgba(232, 248, 245, 0.4); */
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: var(--size-4);
+      position: relative;
+      inline-size: 156px;
+      block-size: 204px;
+      padding: 0.875rem;
+      text-decoration: none;
+
+      figcaption {
+        --_gap: 0.2ex;
+      }
+
+      img {
+        --size: 80px;
+        block-size: var(--size);
+        inline-size: var(--size);
+        border-radius: var(--radius-round);
+        background: var(--gradient-8);
+      }
+
+      .Name {
+        /* color: oklch(0.97 0 0); */
+        font-weight: var(--font-weight-6);
+        color: oklch(0.27 0 0);
+      }
+
+      .Username {
+        /* color: var(--text-2); */
+        color: oklch(0.57 0 0);
+        
+      }
+
+      :is(.Name, .Username) {
+        max-inline-size: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .RemoveBtn {
+        background: transparent;
+        border: unset;
+        border-radius: var(--radius-round);
+        position: absolute;
+        inset-inline-end: var(--size-2);
+        inset-block-start: 0.75rem;
+        scale: 0.8;
+        cursor: pointer;
+      }
+
+      .FollowButton {
+        /* background-color: var(--text-1); */
+        /* background-color: oklch(0.97 0 0); */
+        background-color: #D89619;
+        color: #FAFAFA;
+        /* color: oklch(0.17 0 0); */
+        font-weight: var(--font-weight-5);
+        padding-inline: var(--size-5);
+        border-radius: 10px;
+        padding-block: var(--size-2);
+        inline-size: 100%;
+      }
+    }
+
+    .Controls {
+      position: absolute;
+      inset-inline: calc(var(--size-9) * -1);
+      block-size: 204px;
+      z-index: -1;
+
+      .Wrapper {
+        --_content: 700px;
+      }
+
+      @media (width < 768px) {
+        display: none;
+      }
+    }
+
+    .ControlsBtn {
+      /* border: 2px solid red; */
+      inline-size: 44px;
+      block-size: 44px;
+      padding: 0.75rem;
+      border-radius: var(--radius-round);
+      /* background-color: oklch(0.24 0 0); */
+      background-color: #FAFAFA;
+      color: oklch(0.57 0 0);
+      transition: 0.2s ease;
+       &:hover {
+        scale: 1.07;
+      }
+
+      &:active {
+        scale: 1.03;
+      }
+    }
+
+    &:hover {
+      .ControlsBtn {
+        opacity: 1;
+      }
+    }
+  }
+
+  @layer scrollDrivenAnimation {
+
+    /* .SectionRecommendation {
+      body & {
+        timeline-scope: --carousel;
+      } */
+    .SectionRecommendation {
+      timeline-scope: --carousel;
+
+      .Scroller {
+        scroll-timeline: --carousel inline;
+      }
+
+      .ControlsBtn {
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        animation-timeline: --carousel;
+      }
+
+      .next {
+        animation-name: next;
+      }
+
+      .previous {
+        animation-name: preview;
+      }
+    }
+
+    @keyframes preview {
+      from {
+        visibility: hidden;
+      }
+    }
+
+    @keyframes next {
+      to {
+        visibility: hidden;
+      }
+    }
+  }
+}

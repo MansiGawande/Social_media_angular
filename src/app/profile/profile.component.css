@@ -7,14 +7,12 @@
 *::after {
   box-sizing: border-box;
 }
-
 .app-body {
   font-family: "Open Sans", Arial, sans-serif;
   min-height: 100vh;
   background-color: #fafafa;
   color: #262626;
   padding-bottom: 3rem;
-
 }
 
 .profile-wrapper {
@@ -22,6 +20,38 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
+.button-div{
+  /* border: 2px solid rgba(239, 239, 245, 0.932); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-follow {
+  position: relative;
+  padding: 15px 70px;
+  top: -22px;
+  /* background: rgba(255,255,255,1); */
+  background: rgba(239, 239, 245, 0.932);
+  border: none;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #f9690E;
+  box-shadow: 0px 5px 45px rgba(249,105,14,0.4);
+  border: 1px solid transparent;
+  transition: all 0.5s ease-in;
+}
+
+.btn-follow:hover
+{
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  /* background: #f9690E; */
+    background: #ec892c;
+     color: rgba(255,255,255,1);
+}
+
 
 img {
   display: block;
