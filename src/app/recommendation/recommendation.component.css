@@ -65,6 +65,7 @@ layer(base.utilities);
       color: inherit;
     }
 
+
     :where(button) {
       border: unset;
       cursor: pointer;
@@ -89,8 +90,7 @@ layer(base.utilities);
       -ms-overflow-style: none;
       /* IE and Edge */
       scrollbar-width: none;
-
-      /* Firefox */
+       /* Firefox */
       &::-webkit-scrollbar {
         display: none;
       }
@@ -149,6 +149,7 @@ layer(base.utilities);
 
         &:hover {
           text-decoration: underline;
+        color: #D89619;
         }
       }
 
