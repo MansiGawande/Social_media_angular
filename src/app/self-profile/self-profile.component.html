@@ -43,7 +43,7 @@
 
                     <div class="gallery-item" *ngFor="let post of postData" tabindex="0"
                         (click)="goToComments(post.post_id)">
-                        <img [src]="getPostImageUrl(post.media_url)" class="gallery-image" alt="">
+                        <img [src]="getPostImageUrl(post?.media_url)" class="gallery-image" alt="">
 
                         <div class="gallery-item-info">
                             <ul>

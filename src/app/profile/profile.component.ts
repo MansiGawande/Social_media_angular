@@ -65,6 +65,8 @@ export class ProfileComponent implements OnInit {
         console.log("Profile data ", response.profile);
         this.profileData = response.profile;
         console.log(this.profileData);
+        // alert(`goToFollows profile_id: ${this.profileData.profile_id}`)
+
 
         // console.log("Profile image URL: ", this.getProfileImageUrl(this.profileData.profileImg_URL));
         // console.log("ProfileImg_Url: ",this.profileData.profileImg_URL)
@@ -98,6 +100,10 @@ export class ProfileComponent implements OnInit {
   goToComments(post_id: number) {
     // console.log("Post_id: ",post_id)
     this.router.navigate(['/comments', post_id]);
+  }
+  goToFollows(profile_id: number){
+  alert(`goToFollows profile_id: ${profile_id}`);
+  this.router.navigate(['/follow',profile_id])
   }
 
   //========================================================================================================

@@ -1,0 +1,145 @@
+<section class="message-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="chat-area">
+                    <div class="chatlist">
+                        <div class="modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="chat-header">
+                                    <div class="msg-search">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup"
+                                            placeholder="Search" aria-label="search" [(ngModel)]="searchTerm">
+                                        <a class="add"><img class="img-fluid"
+                                                src="https://mehedihtml.com/chatbox/assets/img/add.svg" alt="add"></a>
+                                    </div>
+
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="Open-tab" (click)="selectTab('open')"
+                                                type="button">Open</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Closed-tab" (click)="selectTab('closed')"
+                                                type="button">Closed</button>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="chat-lists">
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" *ngIf="activeTab === 'open'">
+                                                <div class="chat-list" *ngFor="let user of openUsers" (click)="selectUser(user)">
+                                                    <a class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img style="width: 50px; height: 50px;" class="img-fluid" src={{user.image}} alt="user img">
+                                                            <span class="active"></span>
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-3">
+                                                            <h3>{{ user.name }}</h3>
+                                                            <p>{{ user.role }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane fade" *ngIf="activeTab === 'closed'">
+                                                <div class="chat-list" *ngFor="let user of closedUsers" (click)="selectUser(user)">
+                                                    <a class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img class="img-fluid" src={{user.image}} alt="user img">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-3">
+                                                            <h3>{{ user.name }}</h3>
+                                                            <p>{{ user.role }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatbox" *ngIf="activeUser">
+                        <div class="modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="msg-head">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="d-flex align-items-center">
+                                                <span class="chat-icon"><img class="img-fluid"
+                                                        src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
+                                                        alt="image title"></span>
+                                                <div class="flex-shrink-0">
+                                                    <img class="img-fluid" style="width: 50px;height: 50px;"
+                                                        src={{activeUser.image}}
+                                                        alt="user img">
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h3>{{ activeUser?.name }}</h3>
+                                                    <p>{{ activeUser?.role }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <ul class="moreoption">
+                                                <li class="navbar nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" role="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                            class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item">Action</a></li>
+                                                        <li><a class="dropdown-item">Another action</a></li>
+                                                        <li>
+                                                            <hr class="dropdown-divider">
+                                                        </li>
+                                                        <li><a class="dropdown-item">Something else here</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="msg-body">
+                                        <ul>
+                                            <li *ngFor="let message of messages" [ngClass]="{'sender': message.type === 'sender', 'reply': message.type === 'reply'}">
+                                                <p>{{ message.text }}</p>
+                                                <span class="time">{{ message.time }}</span>
+                                                <div *ngIf="message.file">
+                                                    <a [href]="message.file.url" target="_blank">{{ message.file.name }}</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="send-box">
+                                    <form (ngSubmit)="sendMessage($event)">  <!-- Ensure using ngSubmit -->
+                                        <div class="input-group" style="border:2px solid red;">
+                                            <input type="text" class="form-control" [(ngModel)]="newMessage" name="messageInput" aria-label="message…"
+                                                placeholder="Write message…" required />
+                                            <span class="material-icons orange600" (click)="toggleEmojiPicker()">face</span>
+                                        </div>
+                                        
+
+                                        <input type="file" (change)="onFileChange($event)" class="form-control" aria-label="Upload File">
+                                        
+                                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                            Send</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

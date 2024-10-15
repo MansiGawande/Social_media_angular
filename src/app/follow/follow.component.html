@@ -1,0 +1,53 @@
+<h1>{{followers.length}} Followers &nbsp; · <span></span> ·&nbsp; {{followers.length}} Thank you</h1>
+<ul id="followers-list">
+    <li *ngFor="let proData of followers">
+
+        <!-- <a href="https://codepen.io/alice@example.com" target="_blank">
+                <img src="https://eu.ui-avatars.com/api/?background=random&name=A&font-size=0.6" alt="Alice's avatar" width="40" height="40">
+                <strong>Alice</strong>
+                <span></span>
+                <em>100</em>
+            </a>
+        </li> -->
+        <!-- <li>
+            <a href="https://codepen.io/bob@example.com" target="_blank">
+                <img src="https://eu.ui-avatars.com/api/?background=random&name=B&font-size=0.6" alt="Bob's avatar" width="40" height="40">
+                <strong>Bob</strong>
+                <span></span>
+                <em>99</em>
+            </a>
+        </li>
+        <li>
+            <a href="https://codepen.io/charlie@example.com" target="_blank">
+                <img src="https://eu.ui-avatars.com/api/?background=random&name=C&font-size=0.6" alt="Charlie's avatar" width="40" height="40">
+                <strong>Charlie</strong>
+                <span></span>
+                <em>98</em>
+            </a>
+        </li>
+        <li>
+            <a href="https://codepen.io/dave@example.com" target="_blank">
+                <img src="https://eu.ui-avatars.com/api/?background=random&name=D&font-size=0.6" alt="Dave's avatar" width="40" height="40">
+                <strong>Dave</strong>
+                <span></span>
+                <em>97</em>
+            </a>
+        </li>
+        <li>
+            <a href="https://codepen.io/eve@example.com" target="_blank">
+                <img src="https://eu.ui-avatars.com/api/?background=random&name=E&font-size=0.6" alt="Eve's avatar" width="40" height="40">
+                <strong>Eve</strong>
+                <span>email</span>
+                <em>96</em>
+            </a>
+        </li> -->
+        <a href="https://codepen.io/alice@example.com" target="_blank">
+            <!-- <img src="https://eu.ui-avatars.com/api/?background=random&name=A&font-size=0.6"  width="40" height="40"> -->
+            <img *ngIf="proData.profile?.profileImg_URL" [src]="getProfileImageUrl(proData.profile.profileImg_URL )"
+                alt="{{ proData.profile.name }}">
+            <strong>{{proData?.profile?.name}}</strong>
+            <span>{{proData?.profile?.email}}</span>
+        </a>
+    </li>
+</ul>
+<div class="footer">© 2024 Social Media</div>

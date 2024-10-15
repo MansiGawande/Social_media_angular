@@ -65,5 +65,9 @@ addFollow(user_id:string,followed_id:number):Observable<any> {
   //http://localhost:3001/follow/addFollow
 }
 
+followers(user_id:string,profile_id:number):Observable<any>{
+  return this.http.get(`${this.apiUrl}/follow/following?user_id=${user_id}&profile_id=${profile_id}`)
+  // http://localhost:3001/follow/following?user_id=5&profile_id=8}
+
 }
-  
+}

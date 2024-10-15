@@ -13,16 +13,25 @@ import { CommentsComponent } from './comments/comments.component';
 import { SelfProfileComponent } from './self-profile/self-profile.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
+import { FollowComponent } from './follow/follow.component';
+import { EmojisComponent } from './emojis/emojis.component';
+import { ChatComponent } from './chat/chat.component';
 
 export const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: '', component: SigninComponent },
+
+    { path: 'chat', component: ChatComponent },
     {path:'cpro',component:CreateProfileComponent},
     {path:'cpost',component:CreatepostComponent},
     {path:'comments/:post_id',component:CommentsComponent},
+    {path:'comments/:emoji',component:CommentsComponent},
     // {path:'viewpro', component:ViewproComponent},
     { path: 'profile/:profile_id', component: ProfileComponent }, // other profile
-    // {path:'adminDashboard',component:AdminDashboardComponent},
+    {path:'follow/:profile_id',component:FollowComponent},
+    {path:'emoji',component:EmojisComponent},
+
+    //  {path:'adminDashboard',component:AdminDashboardComponent},
     
     {
         path: 'udashboard', component: UdashboardComponent, children: [

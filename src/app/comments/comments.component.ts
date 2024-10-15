@@ -19,6 +19,32 @@ export class CommentsComponent implements OnInit {
   comments: any[] = []; // store prev comments
   profile: any = {};
   currentUser: any;
+  emojis: string[] = [
+    '😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', 
+    '😋', '😎', '😍', '😘', '🥰', '😗', '😙', '😚', '🙂', '🤗',
+    '🤩', '🤔', '😐', '😑', '😶', '🙄', '😏', '😣', '😥', '😮', 
+    '😱', '😳', '😵', '😠', '😡', '😷', '🤒', '🤕', '🤢', '🤧',
+    '😇', '🥳', '🥺', '😬', '🤥', '😈', '👿', '💀', '☠️', '👻', 
+    '👽', '👺', '👹', '🤖', '🎃', '😺', '😸', '😻', '😼', '😽',
+    '🙀', '😿', '😾', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻',
+    '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🙈', '🙉',
+    '🙊', '🐔', '🐧', '🐦', '🐤', '🐺', '🐗', '🐴', '🦄', '🐝',
+    '🐛', '🦋', '🐌', '🐞', '🐜', '🐢', '🐍', '🦎', '🦕', '🦖',
+    '🐙', '🐠', '🐡', '🐋', '🐳', '🐬', '🦈', '🐊', '🦚', '🦜',
+    '🦩', '🦚', '🐅', '🦓', '🦍', '🦧', '🐆', '🐪', '🐫', '🐘',
+    '🐕', '🐩', '🐾', '🌸', '💐', '🌼', '🌻', '🌺', '🌷', '🌹',
+    '🌈', '🌟', '✨', '💫', '⭐', '🌙', '🌎', '🌍', '🌏', '🔥',
+    '💧', '🌊', '🌪️', '🌈', '🌦️', '☀️', '🌤️', '☁️', '🌥️', 
+    '🌧️', '⛈️', '🌩️', '🌨️', '🌫️', '❄️', '☃️', '☂️', '🌡️', 
+    '🌋', '⛰️', '🏔️', '🗻', '🏕️', '🏞️', '🗺️', '🏙️', '🌆', 
+    '🌃', '🕋', '⛩️', '🏰', '🏯', '🏟️', '⛲', '🌉', '🌌', 
+    '🎠', '🎡', '🎢', '💝', '🎁', '🎀', '🎊', '🎉', '🎈', '🎏',
+    '🎇', '🎆', '🎤', '🎧', '🎷', '🎸', '🎹', '🎺', '🎻', '🎼',
+    '🏅', '🎖️', '🥇', '🥈', '🥉', '🏆', '🎮', '🎲', '🧩', '🃏',
+    '♟️', '🧸', '🎠', '🎪', '🤹‍♂️', '🎭', '🦸‍♂️', '🦹‍♂️', '🧙‍♂️', '🧚‍♂️'
+  ];
+  
+  showEmojiPicker: boolean = false;
 
   constructor(
     private postService: PostserviceService,
@@ -29,9 +55,21 @@ export class CommentsComponent implements OnInit {
   // ngOnInit lifecycle hook is used for initialization tasks in com is called once after the component’s
 
   ngOnInit(): void {
-    // Retrieve post_id from the route parameters and convert it to a number using the +' sign
+    // this.emoji = this.route.snapshot.paramMap.get('emoji') || '';
+    
+    // // Log to see what we received
+    // console.log('Received emoji:', this.emoji);
+
+    // // If the emoji is properly retrieved, display it
+    // if (this.emoji) {
+    //   alert(`Received emoji: ${decodeURIComponent(this.emoji)}`);
+    //   console.log("Received emoji: ",decodeURIComponent(this.emoji));
+    // } else {
+    //   console.error('Emoji parameter is null or undefined');
+    // }
 
     this.post_id = +this.route.snapshot.paramMap.get('post_id')!;
+
 
     if (isNaN(this.post_id)) {
       console.log('Invalid Post ID. Please try again.');
@@ -136,6 +174,8 @@ export class CommentsComponent implements OnInit {
           icon: 'success',
         });
         this.comment = '';
+            this.showEmojiPicker = false; 
+
         this.loadComments(this.post_id);
       },
       error: (error) => {
@@ -164,6 +204,19 @@ export class CommentsComponent implements OnInit {
     return `http://localhost:3001/ProfileImage/image/${imageFilename}`;
   }
 
+  toggleEmojiPicker() {
+    this.showEmojiPicker = !this.showEmojiPicker; // Toggle the emoji picker visibility
+  }
+
+  addEmoji(emoji: string) {
+    this.comment += emoji; // Append selected emoji to the comment
+    // this.showEmojiPicker = false; // Hide the emoji picker after selecting an emoji
+  }
+
+
+  gotoEmoji():void{
+    this.router.navigate(['/emoji']);
+}
 }
 
 

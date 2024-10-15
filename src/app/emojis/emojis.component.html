@@ -1,0 +1,16 @@
+  <div class="grid">
+    <div *ngFor="let emoji of emojis" class="contain">
+      <h4>{{ emoji.name }}</h4>
+      <!-- <div class="em-2x em_{{ emoji }}" (click)="e_comment(emoji)"></div> -->
+      <div class="em-2x" (click)="e_comment(emoji.emoji)">{{ emoji.emoji }}</div>
+    </div>
+  </div>
+
+
+  <!-- <div class="grid">
+    <div *ngFor="let emoji of emojiss" class="contain">
+      <h4>{{ emoji }}</h4>
+      <div class="em-2x em_{{ emoji }}" (click)="e_comment(emoji)"></div>
+    </div>
+  </div> -->
+  
