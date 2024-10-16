@@ -70,4 +70,11 @@ followers(user_id:string,profile_id:number):Observable<any>{
   // http://localhost:3001/follow/following?user_id=5&profile_id=8}
 
 }
+chatFollow(user_id:string):Observable<any>{
+  return this.http.get(`${this.apiUrl}/follow/chatFollow?user_id=${user_id}`)
+}
+addChat(user_id:string,reciever_id:number,content:string):Observable<any>{
+  return this.http.post(`${this.apiUrl}/chat/addchat`,{user_id,reciever_id,content});
+}
+
 }

@@ -1,12 +1,16 @@
 // TypeScript Code (chat.component.ts)
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 interface User {
     name: string;
-    role: string;
-    image:string
+    bio: string;
+    profileImg_URL?: string;
 }
 
 interface FileAttachment {
@@ -28,17 +32,66 @@ interface Message {
     imports: [FormsModule, CommonModule],
     standalone: true,
 })
-export class ChatComponent {
+
+export class ChatComponent  {
+    User: User[] = [];
+    profile: any = {};
+
     searchTerm: string = '';
     activeTab: 'open' | 'closed' = 'open';
-    openUsers: User[] = [
-        { name: 'Mehedi Hasan', role: 'Front End Developer',image:"https://mehedihtml.com/chatbox/assets/img/user.png" },
-        { name: 'Another User', role: 'Back End Developer',image:"https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
-    ];
+
+    constructor(private userService:UserService,private route:ActivatedRoute){}
+    ngOnInit(): void {
+        this.loadFollowers();
+    }
+    loadFollowers() : void {
+        const user_id = sessionStorage.getItem("loginId")
+        if(!user_id){
+          console.log("User ID not found. Please sign in")
+          Swal.fire({
+            title: "Error!",
+            text: "Please sign in. for view the Profile",
+            icon: "error",
+          });
+          return;
+        }
+        this.userService.chatFollow(user_id).subscribe({
+            next:(response)=>{
+          // alert(`Inside follow: ${this.profile_id}`);
+          console.log("All follower data: ",response.followers);
+          // console.log("All follower data: ",response.followers[0].profile);
+           this.User = response.followers;
+           this.User = response.followers.map((follower: any) => follower.profile); // Extract profiles directly
+
+          console.log("=============================",this.User) //all
+          if(response.followers.length > 0 && response.User[0].profile){
+            this.profile = response.followers[0].profile
+            console.log('Profile Image URL:', this.getProfileImageUrl(this.profile.profileImg_URL));
+      }
+          
+        } ,error:(error)=>{
+          console.log(error);
+              Swal.fire({
+                title: 'Error!',
+                text: 'Internal server problem.',
+                icon: 'error',
+              });
+        }
+      })
+      }
+        getProfileImageUrl(imageFilename: string): string {
+            console.log('Profile Image Filename:', imageFilename);
+            return `http://localhost:3001/ProfileImage/image/${imageFilename}`;
+        }
+
+    // openUsers: User[] = [
+    //     { name: 'Mehedi Hasan', role: 'Front End Developer',image:"https://mehedihtml.com/chatbox/assets/img/user.png" },
+    //     { name: 'Another User', role: 'Back End Developer',image:"https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
+    // ];
     closedUsers: User[] = [
-        { name: 'Tumpa Moni', role: 'Front End Developer',image:"" },
-        { name: 'Hasan Ali', role: 'Front End Developer' ,image:""},
-        { name: 'Mehedi Hasan', role: 'Front End Developer' ,image:""},
+        { name: 'Tumpa Moni', bio: 'Front End Developer', profileImg_URL: '' },
+        { name: 'Hasan Ali', bio: 'Front End Developer', profileImg_URL: '' },
+        { name: 'Mehedi Hasan', bio: 'Front End Developer', profileImg_URL: '' },
     ];
     activeUser: User | null = null;
     messages: Message[] = [];
@@ -51,7 +104,6 @@ export class ChatComponent {
       '🤩', '🤔', '😐', '😑', '😶', '🙄', '😏', '😣', '😥', '😮', 
       '😱', '😳', '😵', '😠', '😡', '😷', '🤒', '🤕', '🤢', '🤧',
       '😇', '🥳', '🥺', '😬', '🤥', '😈', '👿', '💀', '☠️', '👻', 
-      // ... Add more emojis as needed
     ];
     showEmojiPicker: boolean = false;
   
@@ -71,6 +123,7 @@ export class ChatComponent {
     }
 
     selectUser(user: User) {
+        console.log("Active User in chat: ",user); // current choose user
         this.activeUser = user;
         this.messages = [
             { text: 'Hey, Are you there?', time: '10:06 am', type: 'reply' }, // Received messages should be 'reply'

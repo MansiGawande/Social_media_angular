@@ -1,8 +1,8 @@
 
-.material-icons.orange600 { color: #FB8C00; cursor: pointer;}
+/* .material-icons.orange600 { color: #FB8C00; cursor: pointer;} */
 
-html,
-body,
+/* html,
+body, */
 div,
 span,
 applet,
@@ -139,19 +139,19 @@ table {
  Typography Style
 ******************************** */
 
-body {
+/* body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
+} */
 
-html {
+/* html {
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 h1 {
     font-size: 36px;
@@ -578,8 +578,9 @@ li.repaly .time {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 0.25rem;
+    /* border-radius: 0.25rem; */
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-radius: 0; /* Change this line */
 }
 
 .send-box button {
@@ -795,4 +796,20 @@ button:focus {
     font-size: 0.8em;
     /* color: #888; */
 }
+.material-icons.orange600 { color: #FB8C00;cursor: pointer;}
+
+.material-icons {
+font-family: 'Material Icons';
+font-weight: normal;
+font-style: normal;
+font-size: 24px;
+line-height: 1; 
+letter-spacing: normal;
+text-transform: none;
+display: inline-block;
+white-space: nowrap;
+word-wrap: normal;
+direction: ltr;   
+}
+
 

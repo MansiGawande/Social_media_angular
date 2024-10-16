@@ -30,29 +30,39 @@
                                     <div class="chat-lists">
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" *ngIf="activeTab === 'open'">
-                                                <div class="chat-list" *ngFor="let user of openUsers" (click)="selectUser(user)">
-                                                    <a class="d-flex align-items-center">
+                                                <!-- <div class="chat-list" *ngFor="let user of openUsers" (click)="selectUser(user)"> -->
+                                                   <div class="chat-list" *ngFor="let user of User" (click)="selectUser(user)">
+                                                        <a class="d-flex align-items-center">
                                                         <div class="flex-shrink-0">
-                                                            <img style="width: 50px; height: 50px;" class="img-fluid" src={{user.image}} alt="user img">
+                                                            <!-- <img style="width: 50px; height: 50px;" class="img-fluid" src={{user.image}} alt="user img"> -->
+                                                            <img style="width: 50px; height: 50px;" class="img-fluid" *ngIf="user.profileImg_URL" [src]="getProfileImageUrl(user.profileImg_URL )" alt="user img">
                                                             <span class="active"></span>
                                                         </div>
                                                         <div class="flex-grow-1 ms-3">
+                                                            <!-- <h3>{{ user.name }}</h3>
+                                                            <p>{{ user.role }}</p> -->
                                                             <h3>{{ user.name }}</h3>
-                                                            <p>{{ user.role }}</p>
+                                                            <p>{{ user.bio }}</p>
+
                                                         </div>
                                                     </a>
                                                 </div>
                                             </div>
 
                                             <div class="tab-pane fade" *ngIf="activeTab === 'closed'">
-                                                <div class="chat-list" *ngFor="let user of closedUsers" (click)="selectUser(user)">
+                                                <div class="chat-list" 
+                                                *ngFor="let user of closedUsers" (click)="selectUser(user)">
                                                     <a class="d-flex align-items-center">
                                                         <div class="flex-shrink-0">
-                                                            <img class="img-fluid" src={{user.image}} alt="user img">
+                                                            <img 
+                                                                class="img-fluid" 
+                                                                *ngIf="user.profileImg_URL"
+                                                                [src]="getProfileImageUrl(user.profileImg_URL)" 
+                                                                alt="{{ user.name }}'s profile image">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3">
                                                             <h3>{{ user.name }}</h3>
-                                                            <p>{{ user.role }}</p>
+                                                            <p>{{ user.bio }}</p>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -71,17 +81,23 @@
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="d-flex align-items-center">
-                                                <span class="chat-icon"><img class="img-fluid"
+                                                    <span class="chat-icon"><img class="img-fluid"
                                                         src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
                                                         alt="image title"></span>
                                                 <div class="flex-shrink-0">
-                                                    <img class="img-fluid" style="width: 50px;height: 50px;"
+                                                    <!-- <img class="img-fluid" style="width: 50px;height: 50px;"
                                                         src={{activeUser.image}}
-                                                        alt="user img">
-                                                </div>
+                                                        alt="user img"> -->
+                                                <img class="img-fluid" style="width: 50px;height: 50px;"
+                                                        *ngIf="activeUser.profileImg_URL"
+                                                        [src]="getProfileImageUrl(activeUser.profileImg_URL)"
+                                                        alt="{{ activeUser.name }}'s profile image"
+                                                    >
+                                                    
+                                                </div> 
                                                 <div class="flex-grow-1 ms-3">
                                                     <h3>{{ activeUser?.name }}</h3>
-                                                    <p>{{ activeUser?.role }}</p>
+                                                    <p>{{ activeUser?.bio }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,12 +137,12 @@
                                 </div>
 
                                 <div class="send-box">
-                                    <form (ngSubmit)="sendMessage($event)">  <!-- Ensure using ngSubmit -->
-                                        <div class="input-group" style="border:2px solid red;">
+                                    <form (ngSubmit)="sendMessage($event)"> 
+                                        <div class="input-group"  style="border: 1px solid #ccc; border-radius: 0.25rem; display:flex; align-items:center;">
                                             <input type="text" class="form-control" [(ngModel)]="newMessage" name="messageInput" aria-label="message…"
                                                 placeholder="Write message…" required />
-                                            <span class="material-icons orange600" (click)="toggleEmojiPicker()">face</span>
-                                        </div>
+                                                <span class="material-icons orange600" (click)="toggleEmojiPicker()">face</span>
+                                             </div>
                                         
 
                                         <input type="file" (change)="onFileChange($event)" class="form-control" aria-label="Upload File">
