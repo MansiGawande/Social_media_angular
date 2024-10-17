@@ -34,8 +34,8 @@
                                                    <div class="chat-list" *ngFor="let user of User" (click)="selectUser(user)">
                                                         <a class="d-flex align-items-center">
                                                         <div class="flex-shrink-0">
-                                                            <!-- <img style="width: 50px; height: 50px;" class="img-fluid" src={{user.image}} alt="user img"> -->
-                                                            <img style="width: 50px; height: 50px;" class="img-fluid" *ngIf="user.profileImg_URL" [src]="getProfileImageUrl(user.profileImg_URL )" alt="user img">
+                                                       <!-- <img style="width: 50px; height: 50px;" class="img-fluid" src={{user.image}} alt="user img"> -->
+                                                            <img  style="width: 50px; height: 50px;" class="img-fluid" *ngIf="user.profileImg_URL" [src]="getProfileImageUrl(user.profileImg_URL )" alt="user img">
                                                             <span class="active"></span>
                                                         </div>
                                                         <div class="flex-grow-1 ms-3">
@@ -43,7 +43,6 @@
                                                             <p>{{ user.role }}</p> -->
                                                             <h3>{{ user.name }}</h3>
                                                             <p>{{ user.bio }}</p>
-
                                                         </div>
                                                     </a>
                                                 </div>
@@ -139,13 +138,15 @@
                                 <div class="send-box">
                                     <form (ngSubmit)="sendMessage($event)"> 
                                         <div class="input-group"  style="border: 1px solid #ccc; border-radius: 0.25rem; display:flex; align-items:center;">
-                                            <input type="text" class="form-control" [(ngModel)]="newMessage" name="messageInput" aria-label="message…"
+                                            <input type="text" class="form-control" [(ngModel)]="content" name="messageInput" aria-label="message…"
                                                 placeholder="Write message…" required />
-                                                <span class="material-icons orange600" (click)="toggleEmojiPicker()">face</span>
+                                                <!-- <span class="material-icons orange600" (click)="toggleEmojiPicker()">face</span> -->
                                              </div>
                                         
 
-                                        <input type="file" (change)="onFileChange($event)" class="form-control" aria-label="Upload File">
+                                        <input type="file"
+                                         (change)="onFileChange($event)" 
+                                         class="form-control" aria-label="Upload File">
                                         
                                         <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                                             Send</button>
