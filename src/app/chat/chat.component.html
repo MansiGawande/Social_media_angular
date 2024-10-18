@@ -125,10 +125,10 @@
                                     <div class="msg-body">
                                         <ul>
                                             <li *ngFor="let message of messages" [ngClass]="{'sender': message.type === 'sender', 'reply': message.type === 'reply'}">
-                                                <p>{{ message.text }}</p>
+                                                <p>{{ message.content }}</p>
                                                 <span class="time">{{ message.time }}</span>
                                                 <div *ngIf="message.file">
-                                                    <a [href]="message.file.url" target="_blank">{{ message.file.name }}</a>
+                                                    <a [href]="message.file.media_url" target="_blank">{{ message.file.name }}</a>
                                                 </div>
                                             </li>
                                         </ul>

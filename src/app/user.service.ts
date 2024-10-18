@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -73,8 +74,12 @@ followers(user_id:string,profile_id:number):Observable<any>{
 chatFollow(user_id:string):Observable<any>{
   return this.http.get(`${this.apiUrl}/follow/chatFollow?user_id=${user_id}`)
 }
-addChat(user_id:string,reciever_id:number,content:string):Observable<any>{
-  return this.http.post(`${this.apiUrl}/chat/addchat`,{user_id,reciever_id,content});
-}
 
+addChat(formData: FormData): Observable<any> {
+  return this.http.post(`${this.apiUrl}/chat/addchat`, formData);
+}
+chatByPro(user_id:string,reciever_id:number):Observable<any>{
+  return this.http.get(`${this.apiUrl}/chat/chatByUser?user_id=${user_id}&reciever_id=${reciever_id}`)
+  // http://localhost:3001/chat/chatByUser?user_id=10&reciever_id=5
+}
 }
